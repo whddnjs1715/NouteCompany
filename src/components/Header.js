@@ -9,12 +9,10 @@ const Header = () => {
 };
 
 const TopBar = styled.div`
-  position: absolute;
   width: 390px;
   height: 52px;
   left: 0px;
   top: 0px;
-  border: solid;
 `;
 
 const Logo = styled.img.attrs({
