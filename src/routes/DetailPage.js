@@ -16,7 +16,6 @@ const Container = styled.div`
   width: 390px;
   height: 1479px;
   background: #ffffff;
-  border: solid;
 `;
 
 export default DetailPage;

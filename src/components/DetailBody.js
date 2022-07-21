@@ -31,7 +31,6 @@ const DetailBody = () => {
   const [reviewList, setReviewList] = useState([]);
   const [limit, setLimit] = useState(3);
   const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
   useEffect(() => {
     axios
       .get('https://test.noutecompany.com/product/detail/' + id)
