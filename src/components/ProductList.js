@@ -14,7 +14,7 @@ const SelectAll = styled.div`
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 120%;
   letter-spacing: -0.05em;
   color: #000000;
@@ -26,7 +26,9 @@ const Main = styled.div`
   grid-template-columns: 200px 200px;
 `;
 
-const Article = styled.article``;
+const Article = styled.article`
+  font-size: 11px;
+`;
 
 const ProductImg = styled.img`
   border-radius: 10px;
@@ -35,10 +37,10 @@ const ProductImg = styled.img`
   radius: 10px;
 `;
 
-const ProductList = ({ listData }) => {
+const ProductList = ({ listData, typeNum }) => {
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
+  const offset = (page - 1) * limit + (typeNum - 1) * 12;
   return (
     <Container>
       <SelectAll>
@@ -48,9 +50,9 @@ const ProductList = ({ listData }) => {
       <Main>
         {listData.slice(offset, offset + limit).map(({ id }) => (
           <Article key={id}>
-            <ProductImg src={listData[id].thumb} width="10%" />
-            <div>{listData[id].name}</div>
-            <div>{listData[id].price}</div>
+            <ProductImg src={listData[id - 1].thumb} />
+            <div>{listData[id - 1].name}</div>
+            <div>{listData[id - 1].id}</div>
           </Article>
         ))}
       </Main>
