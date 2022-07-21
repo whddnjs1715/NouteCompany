@@ -1,12 +1,13 @@
+import { React, useState, useEffect } from 'react';
+import { apiRequest } from '../api/index';
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import ProductList from './ProductList';
 
 const MenuBar = styled.div`
-  position: absolute;
   width: 100%;
   height: 48px;
   top: 52px;
-  border: solid;
+  padding: 10px 10px 10px 20px;
 `;
 
 const MenuUl = styled.ul`
@@ -26,24 +27,54 @@ const MenuLi = styled.li`
 
 const MenuDiv = styled.div`
   padding: 10px;
+  color: #000000;
+  align: Center;
+`;
+
+const Rectangle = styled.div`
+  height: 3px;
+  width: 88px;
+  left: 0px;
+  top: 45px;
+  border-radius: 0px;
+  background: #f3f3f3;
 `;
 
 const ListBody = () => {
-  const [name, setName] = useState(['다이어리', '다이어리', '다이어리', '다이어리']);
+  // 다이어리 1, 스티커 2, 노트패드 3, 브러쉬 4
+  const [name, setName] = useState(['다이어리', '스티커', '노트패드', '브러쉬']);
+  const [typeNum, setTypeNum] = useState(0);
+  const [listData, setListData] = useState([]);
 
+  useEffect(() => {
+    apiRequest()
+      .then((response) => {
+        setListData(response.data);
+      })
+      .catch(() => {
+        console.log('fail2!!!!!!!');
+      });
+  }, []);
   return (
     <>
       <MenuBar>
         <MenuUl>
           {name.map(function (a, i) {
             return (
-              <MenuLi>
-                <MenuDiv onClick={() => {}}>{name[i]}</MenuDiv>
+              <MenuLi
+                key={i + 10}
+                onClick={() => {
+                  console.log(listData);
+                }}
+              >
+                <MenuDiv key={i}>{name[i]}</MenuDiv>
+                <Rectangle key={i + 20} />
               </MenuLi>
             );
           })}
         </MenuUl>
       </MenuBar>
+      <ProductList listData={listData} />
     </>
   );
 };
