@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -36,7 +37,7 @@ const Button = styled.button`
 `;
 
 function Pagination({ total, limit, page, setPage }) {
-  const numPages = 3;
+  const [numPages, setNumPages] = useState(3);
 
   return (
     <>
