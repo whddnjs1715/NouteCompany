@@ -1,5 +1,11 @@
+import ListPage from '../routes/ListPage';
+
 const Main = () => {
-  return <div></div>;
+  return (
+    <div>
+      <ListPage />
+    </div>
+  );
 };
 
 export default Main;
