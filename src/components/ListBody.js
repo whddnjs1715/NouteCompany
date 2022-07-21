@@ -43,18 +43,18 @@ const Rectangle = styled.div`
 const ListBody = () => {
   // 다이어리 1, 스티커 2, 노트패드 3, 브러쉬 4
   const [name, setName] = useState(['다이어리', '스티커', '노트패드', '브러쉬']);
-  const [typeNum, setTypeNum] = useState(0);
+  const [typeNum, setTypeNum] = useState(1);
   const [listData, setListData] = useState([]);
 
   useEffect(() => {
-    apiRequest()
+    apiRequest(typeNum)
       .then((response) => {
         setListData(response.data);
       })
       .catch(() => {
-        console.log('fail2!!!!!!!');
+        console.log('Fail!!');
       });
-  }, []);
+  }, [typeNum]);
   return (
     <>
       <MenuBar>
@@ -64,7 +64,7 @@ const ListBody = () => {
               <MenuLi
                 key={i + 10}
                 onClick={() => {
-                  console.log(listData);
+                  setTypeNum(i + 1);
                 }}
               >
                 <MenuDiv key={i}>{name[i]}</MenuDiv>
@@ -74,7 +74,7 @@ const ListBody = () => {
           })}
         </MenuUl>
       </MenuBar>
-      <ProductList listData={listData} />
+      <ProductList listData={listData} typeNum={typeNum} />
     </>
   );
 };
