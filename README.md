@@ -6,10 +6,10 @@
 
 ```bash
 # 설치방법
- $ yarn install or $ npm install
+ $ yarn install 
 
 # 실행방법
- $ yarn start or $ npm start
+ $ yarn start
 ```
 
 ## ✨ Coding Convention
