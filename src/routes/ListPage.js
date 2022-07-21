@@ -15,7 +15,6 @@ const Container = styled.div`
   position: relative;
   width: 390px;
   height: 847px;
-  border: solid;
 `;
 
 export default ListPage;
