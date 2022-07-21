@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
 import styled from 'styled-components';
 
@@ -40,6 +41,7 @@ const ProductImg = styled.img`
 const ProductList = ({ listData, typeNum }) => {
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const offset = (page - 1) * limit + (typeNum - 1) * 12;
   return (
     <Container>
@@ -49,7 +51,12 @@ const ProductList = ({ listData, typeNum }) => {
       </SelectAll>
       <Main>
         {listData.slice(offset, offset + limit).map(({ id }) => (
-          <Article key={id}>
+          <Article
+            key={id}
+            onClick={() => {
+              navigate('/detail/' + id);
+            }}
+          >
             <ProductImg src={listData[id - 1].thumb} />
             <div>{listData[id - 1].name}</div>
             <div>{listData[id - 1].id}</div>

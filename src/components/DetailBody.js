@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Pagination from './Pagination';
 import styled from 'styled-components';
 
 const ProductImg = styled.img`
@@ -27,17 +28,21 @@ const ReviewBox = styled.div``;
 const DetailBody = () => {
   let { id } = useParams();
   const [listData, setListData] = useState([]);
+  const [reviewList, setReviewList] = useState([]);
+  const [limit, setLimit] = useState(3);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
   useEffect(() => {
     axios
       .get('https://test.noutecompany.com/product/detail/' + id)
       .then((response) => {
         setListData(response.data);
+        setReviewList(response.data.review);
       })
       .catch(() => {
         console.log('실패!');
       });
   }, []);
-  console.log(listData.review);
   return (
     <>
       <ProductImg src={listData.thumb} />
@@ -50,8 +55,23 @@ const DetailBody = () => {
       <ReviewContainer>
         <div>구매평</div>
         <Rectangle />
-        {/* <ReviewBox>{listData.review[0].content}</ReviewBox> */}
+        <ReviewBox>
+          {reviewList &&
+            reviewList.map(function (a, i) {
+              return (
+                <>
+                  <div>{reviewList[i].dateTime}</div>
+                  <div>{reviewList[i].writer}</div>
+                  <div>{reviewList[i].content}</div>
+                  <Rectangle />
+                </>
+              );
+            })}
+        </ReviewBox>
       </ReviewContainer>
+      <footer>
+        <Pagination total={reviewList.length} limit={limit} page={page} setPage={setPage} />
+      </footer>
     </>
   );
 };
