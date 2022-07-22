@@ -21,7 +21,39 @@ const Rectangle = styled.div`
   background: #f3f3f3;
 `;
 
-const ReviewContainer = styled.div``;
+const Line = styled.div`
+  width: 358px;
+  height: 0px;
+  border: 1px solid #d2d2d2;
+`;
+
+const BrandName = styled.div`
+  padding: 10px;
+  color: #999999;
+  width: 62px;
+  height: 21px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+`;
+
+const ProductName = styled.div`
+  padding: 10px;
+`;
+
+const ProductPrice = styled.div`
+  padding: 10px;
+`;
+
+const ReviewContainer = styled.div`
+  padding: 10px;
+`;
+
+const ReviewList = styled.div`
+  padding: 10px;
+`;
 
 const ReviewBox = styled.div``;
 
@@ -64,13 +96,13 @@ const DetailBody = () => {
     <>
       <ProductImg src={listData.thumb} />
       <ProductBox>
-        <div>{listData.brandName}</div>
-        <div>{listData.name}</div>
-        <div>{listData.price}</div>
-        <Rectangle />
+        <BrandName>{listData.brandName}</BrandName>
+        <Line />
+        <ProductName>{listData.name}</ProductName>
+        <ProductPrice>{listData.price}원</ProductPrice>
       </ProductBox>
       <ReviewContainer>
-        <div>구매평</div>
+        <ReviewList>구매평</ReviewList>
         <Rectangle />
         <ReviewBox>
           {reviewList &&

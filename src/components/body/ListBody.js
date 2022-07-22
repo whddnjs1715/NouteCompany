@@ -53,7 +53,7 @@ const ListBody = () => {
   const [name, setName] = useState(['다이어리', '스티커', '노트패드', '브러쉬']);
   const [typeNum, setTypeNum] = useState(1);
   const [listData, setListData] = useState([]);
-  const [currNum, setCurrNum] = useState(2);
+  const [currNum, setCurrNum] = useState(0);
 
   useEffect(() => {
     apiRequest(typeNum)
