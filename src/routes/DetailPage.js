@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Header from '../components/header/Header';
-import DetailBody from '../components/DetailBody';
+import DetailBody from '../components/body/DetailBody';
 
 const DetailPage = () => {
   return (
