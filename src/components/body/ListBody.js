@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { apiRequest } from '../api/index';
+import { apiRequest } from '../../api/index';
 import styled from 'styled-components';
 import ProductList from './ProductList';
 
@@ -29,6 +29,11 @@ const MenuDiv = styled.div`
   padding: 10px;
   color: #000000;
   align: Center;
+
+  &[aria-current] {
+    font-weight: bold;
+    color: #ff385c;
+  }
 `;
 
 const Rectangle = styled.div`
@@ -38,13 +43,17 @@ const Rectangle = styled.div`
   top: 45px;
   border-radius: 0px;
   background: #f3f3f3;
+
+  &[aria-current] {
+    background: #ff385c;
+  }
 `;
 
 const ListBody = () => {
-  // 다이어리 1, 스티커 2, 노트패드 3, 브러쉬 4
   const [name, setName] = useState(['다이어리', '스티커', '노트패드', '브러쉬']);
   const [typeNum, setTypeNum] = useState(1);
   const [listData, setListData] = useState([]);
+  const [currNum, setCurrNum] = useState(2);
 
   useEffect(() => {
     apiRequest(typeNum)
@@ -62,13 +71,16 @@ const ListBody = () => {
           {name.map(function (a, i) {
             return (
               <MenuLi
-                key={i + 10}
+                key={name[i]}
                 onClick={() => {
                   setTypeNum(i + 1);
+                  setCurrNum(i);
                 }}
               >
-                <MenuDiv key={i}>{name[i]}</MenuDiv>
-                <Rectangle key={i + 20} />
+                <MenuDiv key={name[i]} aria-current={currNum === i ? 'currNum' : null}>
+                  {name[i]}
+                </MenuDiv>
+                <Rectangle aria-current={currNum === i ? 'currNum' : null} />
               </MenuLi>
             );
           })}

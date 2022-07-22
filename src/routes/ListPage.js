@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Header from '../components/header/Header';
-import ListBody from '../components/ListBody';
+import ListBody from '../components/body/ListBody';
 
 const ListPage = () => {
   return (

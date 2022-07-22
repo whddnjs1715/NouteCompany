@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Pagination from './footer/Pagination';
+import Pagination from '../footer/Pagination';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -35,7 +35,33 @@ const ProductImg = styled.img`
   border-radius: 10px;
   width: 174px;
   height: 174px;
-  radius: 10px;
+`;
+
+const ProductName = styled.div`
+  padding-top: 28px;
+  height: 18px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
+`;
+
+const ProductPrice = styled.div`
+  padding-top: 27px;
+  padding-bottom: 27px;
+  height: 17px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 120%;
+  color: #000000;
+`;
+
+const Sticker = styled.span`
+  color: #ff385c;
+  padding-left: 5px;
 `;
 
 const ProductList = ({ listData, typeNum }) => {
@@ -45,9 +71,13 @@ const ProductList = ({ listData, typeNum }) => {
   const offset = (page - 1) * limit + (typeNum - 1) * 12;
   return (
     <Container>
-      <SelectAll>
+      <SelectAll
+        onClick={() => {
+          console.log('전체보기');
+        }}
+      >
         <span>스티커</span>
-        <span>전체보기</span>
+        <Sticker>전체보기</Sticker>
       </SelectAll>
       <Main>
         {listData.slice(offset, offset + limit).map(({ id }) => (
@@ -58,8 +88,8 @@ const ProductList = ({ listData, typeNum }) => {
             }}
           >
             <ProductImg src={listData[id - 1].thumb} />
-            <div>{listData[id - 1].name}</div>
-            <div>{listData[id - 1].price}원</div>
+            <ProductName>{listData[id - 1].name}</ProductName>
+            <ProductPrice>{listData[id - 1].price}원</ProductPrice>
           </Article>
         ))}
       </Main>

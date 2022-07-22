@@ -9,6 +9,28 @@ const Nav = styled.nav`
   margin: 16px;
 `;
 
+const Btn = styled.button`
+  height: 17px;
+  left: 25.81%;
+  right: 64.52%;
+  top: 7px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  text-align: center;
+  letter-spacing: -0.05em;
+  color: #000000;
+  background: none;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+`;
+
 const Button = styled.button`
   background: #f3f3f3;
   border-radius: 4px;
@@ -27,16 +49,9 @@ const Button = styled.button`
     cursor: revert;
     transform: revert;
   }
-
-  &[aria-current] {
-    background: deeppink;
-    font-weight: bold;
-    cursor: revert;
-    transform: revert;
-  }
 `;
 
-function Pagination({ total, limit, page, setPage }) {
+function Pagination({ page, setPage }) {
   const [numPages, setNumPages] = useState(3);
 
   return (
@@ -48,13 +63,13 @@ function Pagination({ total, limit, page, setPage }) {
         {Array(numPages)
           .fill()
           .map((a, i) => (
-            <Button
+            <Btn
               key={i + 1}
               onClick={() => setPage(i + 1)}
               aria-current={page === i + 1 ? 'page' : null}
             >
               {i + 1}
-            </Button>
+            </Btn>
           ))}
         <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
           &gt;
