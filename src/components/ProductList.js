@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Pagination from './Pagination';
+import Pagination from './footer/Pagination';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -59,7 +59,7 @@ const ProductList = ({ listData, typeNum }) => {
           >
             <ProductImg src={listData[id - 1].thumb} />
             <div>{listData[id - 1].name}</div>
-            <div>{listData[id - 1].id}</div>
+            <div>{listData[id - 1].price}원</div>
           </Article>
         ))}
       </Main>

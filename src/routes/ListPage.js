@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import ListBody from '../components/ListBody';
 
 const ListPage = () => {
